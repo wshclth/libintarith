@@ -46,7 +46,7 @@ ia_double ia_mul(ia_double a, ia_double b);
 ia_double ia_div(ia_double n, ia_double d);
 
 /* gets the error present in the ia_double n */
-double ia_err(ia_double n)
+double ia_err(ia_double n);
 
 /* pretty prints the ia_double n */
 void ia_print(ia_double n);

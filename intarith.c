@@ -1,4 +1,4 @@
-#include "intervalarithmetic.h"
+#include "intarith.h"
 
 ia_double
 dtoia(double d)
