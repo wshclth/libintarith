@@ -7,7 +7,7 @@ all:
 	$(CC) $(LFLAGS) $(CFLAGS) -shared -o libintarith.so -fPIC intarith.c
 
 tests:
-	$(CC) $(LFLAGS) $(CFLAGS) main.c -o tests
+	$(CC) $(LFLAGS) $(CFLAGS) tests.c intarith.c -o tests
 
 clean:
 	rm -rf *.so
