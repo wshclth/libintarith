@@ -45,6 +45,9 @@ ia_double ia_mul(ia_double a, ia_double b);
 /* n / d */
 ia_double ia_div(ia_double n, ia_double d);
 
+/* sqrt(s) (Babylonian method) */
+ia_double ia_sqrt(ia_double s);
+
 /* gets the error present in the ia_double n */
 double ia_err(ia_double n);
 

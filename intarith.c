@@ -159,6 +159,24 @@ ia_div(ia_double n, ia_double d)
   }
 }
 
+ia_double
+ia_sqrt(ia_double s)
+{
+  const ia_double coef = dtoia(0.5);
+
+  ia_double sqrt = ia_div(s, dtoia(2));
+  do {
+    ia_double nxt = ia_mul(coef, ia_add(sqrt, ia_div(s, sqrt)));
+    if (nxt.min == sqrt.min && nxt.max == sqrt.max)
+    {
+      break;
+    }
+    sqrt = nxt;
+  } while(1);
+
+  return sqrt;
+}
+
 double
 ia_err(ia_double n)
 {
