@@ -4,10 +4,10 @@ LFLAGS=-L. -lm
 CFLAGS=-Wall -Werror -Wpedantic -O3 -fno-strict-aliasing
 
 all:
-	$(CC) $(LFLAGS) $(CFLAGS) -shared -o libintarith.so -fPIC intarith.c
+	$(CC) $(CFLAGS) -shared -o libintarith.so -fPIC intarith.c $(LFLAGS)
 
 tests:
-	$(CC) $(LFLAGS) $(CFLAGS) tests.c intarith.c -o tests
+	$(CC) $(CFLAGS) tests.c intarith.c -o tests $(LFLAGS)
 
 clean:
 	rm -rf *.so
