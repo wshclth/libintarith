@@ -72,17 +72,17 @@ main(int argc, char **argv)
   if (pie.min <= pie.n &&
       pie.n <= pie.max)
   {
-    printf("[pass] %f <= %f <= %f, fpe = %.16f\n",
+    printf("[pass] %f <= %f <= %f, fpe = %.16f\n\n",
         pie.min, pie.n, pie.max, ia_err(pie));
   }
   else
   {
     ia_print(pie);
-    printf("[fail] inequality min < n < max does not hold true");
+    printf("[err] inequality min < n < max does not hold true");
     return 1;
   }
 
-  printf("[working] computing euclid norm squared of ill conditioned vector\n");
+  printf("[working] normalizing vector\n");
   srand(0);
   double vect[1000];
 
@@ -95,7 +95,31 @@ main(int argc, char **argv)
   printf("[result] ");
   ia_print(normalized_vector_norm);
 
-  ia_print(ia_sqrt(dtoia(2.0)));
+  if (1.0 - normalized_vector_norm.n <= 1e-14)
+  {
+    printf("[pass] norm == 1 with precision >= 1e-14\n\n");
+  }
+  else
+  {
+    printf("[err] norm != 1\n");
+    return 1;
+  }
+
+  printf("[working] computing sqrt(2) to machine precision\n");
+  ia_double sqrt_two = ia_sqrt(dtoia(2.0));
+  printf("[result] ");
+  ia_print(sqrt_two);
+
+  if (1.4142135623730950 - sqrt_two.n <= 1e-16)
+  {
+    printf("[pass] %f is sqrt(2) computed to machine precision\n",
+        sqrt_two.n);
+  }
+  else
+  {
+    printf("[err] %f is not at machine precision\n", sqrt_two.n);
+  }
+
 
   return 0;
 }
