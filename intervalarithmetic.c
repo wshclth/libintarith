@@ -159,6 +159,12 @@ ia_div(ia_double n, ia_double d)
   }
 }
 
+double
+ia_err(ia_double n)
+{
+  return (fabs(n.max - n.min));
+}
+
 void
 ia_print(ia_double n)
 {

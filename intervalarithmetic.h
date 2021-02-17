@@ -30,13 +30,25 @@ typedef struct
 
 } ia_double;
 
+/* casts a double to an ia_double */
 ia_double dtoia(double d);
 
+/* a + b */
 ia_double ia_add(ia_double a, ia_double b);
+
+/* b - a */
 ia_double ia_sub(ia_double a, ia_double b);
+
+/* a * b */
 ia_double ia_mul(ia_double a, ia_double b);
+
+/* n / d */
 ia_double ia_div(ia_double n, ia_double d);
 
+/* gets the error present in the ia_double n */
+double ia_err(ia_double n)
+
+/* pretty prints the ia_double n */
 void ia_print(ia_double n);
 
 #endif
