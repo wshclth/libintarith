@@ -3,6 +3,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 static ia_double
 vector_normalize(size_t n, double *v)
@@ -112,7 +113,7 @@ main(int argc, char **argv)
 
   if (1.4142135623730950 - sqrt_two.n <= 1e-16)
   {
-    printf("[pass] %f is sqrt(2) computed to machine precision\n",
+    printf("[pass] %f is sqrt(2) computed to machine precision\n\n",
         sqrt_two.n);
   }
   else
@@ -120,6 +121,28 @@ main(int argc, char **argv)
     printf("[err] %f is not at machine precision\n", sqrt_two.n);
   }
 
+  printf("[working] performing speed test for metrics\n");
 
+  clock_t start_t, end_t;
+  start_t = clock();
+
+  const ia_double one = dtoia(1.0);
+  ia_double accu = dtoia(0.0);
+  for (size_t i = 1; i <= 500000000; i++)
+  {
+    accu = ia_add(accu, one);
+  } 
+  end_t = clock();
+  printf("[result] speed test addition (ia_double): %d flops\n", (int)((500000000.0) / ((double)(end_t - start_t) / CLOCKS_PER_SEC)));  
+
+  start_t = clock();
+  volatile double accum = 0;
+  for (size_t i = 1; i <= 500000000; i++)
+  {
+    accum += 1;
+  }
+  end_t = clock();
+  printf("[result] speed test addition (double): %d flops\n", (int)((500000000.0) / ((double)(end_t - start_t) / CLOCKS_PER_SEC)));  
+  
   return 0;
 }
